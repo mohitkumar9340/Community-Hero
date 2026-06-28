@@ -266,18 +266,7 @@ function saveLocalComment(comment: IssueComment) {
 }
 
 export async function seedDatabase() {
-  // Seed the database
-  try {
-    const issuesSnapshot = await getDocs(collection(db, 'issues'));
-    if (issuesSnapshot.empty) {
-      for (const issue of DEFAULT_ISSUES) {
-        const { id, ...issueData } = issue;
-        await setDoc(doc(db, 'issues', id), issueData);
-      }
-    }
-  } catch (error) {
-    console.error('Error seeding database:', error);
-  }
+  return;
 }
 
 export async function fetchIssues(): Promise<CommunityIssue[]> {

@@ -1,0 +1,55 @@
+{
+  "entities": {
+    "CommunityIssue": {
+      "title": "CommunityIssue",
+      "description": "A community reported issue",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "status": { "type": "string" },
+        "priority": { "type": "string" },
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" },
+        "address": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "videoUrl": { "type": "string" },
+        "reportedBy": { "type": "string" },
+        "reportedAt": { "type": "string" },
+        "votes": { "type": "number" },
+        "votedBy": { "type": "array" },
+        "verifiedBy": { "type": "array" },
+        "resolutionDetails": { "type": "string" },
+        "timeline": { "type": "array" },
+        "aiActionPlan": { "type": "string" },
+        "aiSuggestedCategory": { "type": "string" },
+        "priorityRationale": { "type": "string" },
+        "assignedDepartment": { "type": "string" }
+      },
+      "required": ["title", "description", "category", "status", "priority", "latitude", "longitude", "address", "reportedBy", "reportedAt", "votes", "verifiedBy", "timeline"]
+    },
+    "IssueComment": {
+      "title": "IssueComment",
+      "description": "A comment left on a community issue",
+      "type": "object",
+      "properties": {
+        "issueId": { "type": "string" },
+        "author": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["issueId", "author", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/issues/{issueId}": {
+      "schema": "CommunityIssue",
+      "description": "Store community reported issues"
+    },
+    "/comments/{commentId}": {
+      "schema": "IssueComment",
+      "description": "Store comments for community issues"
+    }
+  }
+}

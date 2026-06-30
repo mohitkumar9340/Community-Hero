@@ -40,7 +40,11 @@ export function LoginModal({ onClose, onAdminLogin, onUserLogin }: { onClose: ()
         onUserLogin({ ...user, name: userName });
       }
     } catch (err: any) {
-      toast.error(err.message || 'Authentication failed');
+      if (err.code === 'auth/invalid-login-credentials' || err.code === 'auth/invalid-credential' || (err.message && err.message.includes('INVALID_LOGIN_CREDENTIALS'))) {
+        toast.error('Invalid email or password. If you are new, please register.');
+      } else {
+        toast.error(err.message || 'Authentication failed');
+      }
     }
   };
 
@@ -57,7 +61,11 @@ export function LoginModal({ onClose, onAdminLogin, onUserLogin }: { onClose: ()
         onAdminLogin({ ...user, email: adminEmail, name: adminName, department: adminDept });
       }
     } catch (err: any) {
-      toast.error(err.message || 'Authentication failed');
+      if (err.code === 'auth/invalid-login-credentials' || err.code === 'auth/invalid-credential' || (err.message && err.message.includes('INVALID_LOGIN_CREDENTIALS'))) {
+        toast.error('Invalid admin credentials. Please ensure you are registered.');
+      } else {
+        toast.error(err.message || 'Authentication failed');
+      }
     }
   };
 
